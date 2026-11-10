@@ -188,25 +188,44 @@ void spawnBlock() {
 // Chuc nang: Dat lai toa do xuat phat cho khoi gach moi tai dinh man hinh (x = 5, y = 0),
 // gan khoi gach hien tai b bang nextB, va sinh ngau nhien chi so moi cho nextB.
 // Su dung de: Goi luc moi vao game va goi moi khi khoi gach truoc do da cham day.
+    x = 5;
+    y = 0;
+    b = nextB;
+    nextB = rand() % 7;
 }
 
 bool canRotate(int newBlockIndex) {
 // Chuc nang: Kiem tra xem tai vi tri (x, y) hien tai, neu thay doi hinh dang khoi gach
 // sang trang thai xoay moi (newBlockIndex) thi co bi vuot bien hoac cham gach cu khong.
 // Su dung de: Lam dieu kien kiem tra an toan ben trong ham rotateBlock().
-    return false;
+    for (int i = 0; i < 4; i++)
+        for (int j = 0; j < 4; j++)
+            if (blocks[newBlockIndex][i][j] != ' ') {
+                int xt = x + j;
+                int yt = y + i;
+                if (xt < 1 || xt >= W - 1 || yt < 1 || yt >= H - 1) return false;
+                if (board[yt][xt] != ' ') return false;
+            }
+    return true;
 }
 
 void rotateBlock() {
 // Chuc nang: Xac dinh chi so hinh dang tiep theo cua khoi gach hien tai khi xoay 90 do,
 // goi ham canRotate() de kiem tra, neu hop le thi cap nhat bien b sang hinh dang moi.
 // Su dung de: Goi khi nguoi choi nhan phim xoay gach (vi du phim 'w').
+    int newBlockIndex = (b + 7) % 28;
+    if (canRotate(newBlockIndex)) {
+        b = newBlockIndex;
+    }
 }
 
 void hardDrop() {
 // Chuc nang: Su dung vong lap kiem tra canMove(0, 1) lien tuc de tang tung do y
 // cho den khi khoi gach cham sat be mat thap nhat co the ngay trong 1 nhip.
 // Su dung de: Goi khi nguoi choi nhan phim Space muon ha nhanh khoi gach.
+    while (canMove(0, 1)) {
+        y++;
+    }
 }
 
 void handleInput(bool &isRunning) {
