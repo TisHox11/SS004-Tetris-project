@@ -33,8 +33,8 @@ Trò chơi sử dụng thư viện `<conio.h>` và `<windows.h>`, tương thích
 
 Chạy bằng Terminal / Git Bash (với trình biên dịch MinGW G++):
 
-    # 1. Biên dịch mã nguồn
+    1. Biên dịch mã nguồn
     g++ main.cpp -o tetris.exe
 
-    # 2. Chạy trò chơi
+    2. Chạy trò chơi
     ./tetris.exe
