@@ -74,6 +74,98 @@ void pauseGame(); // Tam dung tro choi khi nhan phim Pause
 void showMenu(); // Hien thi man hinh Menu bat dau game
 void showGameOver(); // Hien thi man hinh ket thuc va bao tong diem
 
+void handleInput(bool &isRunning) {
+    char c = getch();
+    if ((c == 'a' || c == 'A') && canMove(-1, 0)) x--;
+    else if ((c == 'd' || c == 'D') && canMove(1, 0)) x++;
+    else if ((c == 'x' || c == 'X') && canMove(0, 1)) y++;
+    else if (c == 'w' || c == 'W') rotateBlock();
+    else if (c == ' ') hardDrop();
+    else if (c == 'p' || c == 'P') pauseGame();
+    else if (c == 'q' || c == 'Q') isRunning = false;
+}
+
+void drawUI() {
+    int uiX = W + 4;
+    gotoXY(uiX, 1);
+    cout << "=== TETRIS GAME ===";
+    gotoXY(uiX, 3);
+    cout << "Diem so (Score): " << score << "    ";
+    gotoXY(uiX, 4);
+    cout << "Cap do  (Level): " << level << "    ";
+
+    gotoXY(uiX, 6);
+    cout << "Khoi tiep theo (Next):";
+    for (int i = 0; i < 4; i++) {
+        gotoXY(uiX + 2, 7 + i);
+        cout << "[ ";
+        for (int j = 0; j < 4; j++) {
+            cout << blocks[nextB][i][j];
+        }
+        cout << " ]";
+    }
+
+    gotoXY(uiX, 12);
+    cout << "--- DIEU KHIEN ---";
+    gotoXY(uiX, 13);
+    cout << "A / D : Sang Trai / Phai";
+    gotoXY(uiX, 14);
+    cout << "W     : Xoay khoi gach";
+    gotoXY(uiX, 15);
+    cout << "X     : Roi nhanh 1 o";
+    gotoXY(uiX, 16);
+    cout << "Space : Roi cham day";
+    gotoXY(uiX, 17);
+    cout << "P     : Tam dung (Pause)";
+    gotoXY(uiX, 18);
+    cout << "Q     : Thoat game";
+}
+
+void pauseGame() {
+    int uiX = W + 4;
+    gotoXY(uiX, 19);
+    cout << ">> DANG TAM DUNG (Nhan P de tiep tuc) <<";
+    while (true) {
+        char c = getch();
+        if (c == 'p' || c == 'P') break;
+    }
+    gotoXY(uiX, 19);
+    cout << "                                        ";
+}
+
+void showMenu() {
+    system("cls");
+    hideCursor();
+    cout << "============================================" << endl;
+    cout << "          CHAO MUNG DEN VOI TETRIS          " << endl;
+    cout << "   Phat trien dua tren code mau Thay Toan   " << endl;
+    cout << "============================================" << endl << endl;
+    cout << "HUONG DAN DIEU KHIEN:" << endl;
+    cout << "  - Phim A / D : Di chuyen sang Trai / Phai" << endl;
+    cout << "  - Phim W     : Xoay khoi gach 90 do" << endl;
+    cout << "  - Phim X     : Ha nhanh khoi gach 1 o" << endl;
+    cout << "  - Phim Space : Roi thang xuong day (Hard Drop)" << endl;
+    cout << "  - Phim P     : Tam dung tro choi" << endl;
+    cout << "  - Phim Q     : Thoat tro choi" << endl << endl;
+    cout << "============================================" << endl;
+    cout << ">> Nhan phim bat ky de bat dau van choi...  ";
+    getch();
+    system("cls");
+}
+
+void showGameOver() {
+    system("cls");
+    cout << "============================================" << endl;
+    cout << "        KET THUC TRO CHOI (GAME OVER)       " << endl;
+    cout << "============================================" << endl << endl;
+    cout << "  -> Tong diem dat duoc : " << score << endl;
+    cout << "  -> Cap do dat duoc    : " << level << endl << endl;
+    cout << "============================================" << endl;
+    cout << ">> Nhan phim Q de dong chuong trinh... ";
+    char c = getch();
+    while (c != 'q' && c != 'Q')
+        c = getch();
+}
 
 int main()
 {
