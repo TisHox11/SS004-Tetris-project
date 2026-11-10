@@ -138,18 +138,26 @@ void draw(){
         for (int j = 0 ; j < W ; j++) cout<<board[i][j];
 }
 void removeLine(){
-    int i,j;
-    for (i = H-2 ; i > 0 ; i-- ){
-        for (j = 0 ; j < W ; j++)
+    int i, j;
+    int linesCount = 0;
+    for (i = H - 2; i > 0; i--) {
+        for (j = 1; j < W - 1; j++)
             if (board[i][j] == ' ') break;
-        if (j == W){
-            for (int ii = i ; ii > 0 ; ii--)
-                for (int jj = 0; jj < W; jj++)
-                    board[ii][jj] = board[ii-1][jj];
+        if (j == W - 1) {
+            linesCount++;
+            for (int ii = i; ii > 1; ii--)
+                for (int jj = 1; jj < W - 1; jj++)
+                    board[ii][jj] = board[ii - 1][jj];
+            for (int jj = 1; jj < W - 1; jj++)
+                board[1][jj] = ' ';
             i++;
             draw();
+            drawUI();
             _sleep(200);
         }
+    }
+    if (linesCount > 0) {
+        updateScoreAndLevel(linesCount);
     }
 }
 
@@ -244,12 +252,24 @@ void updateScoreAndLevel(int linesCount) {
 // Chuc nang: Tinh diem thuong dua tren so hang xoa duoc cung luc (linesCount),
 // cong don vao bien score; neu diem vuot moc thi tang level va giam dropSpeed.
 // Su dung de: Goi khi nguoi choi xoa duoc hang trong ham removeLine().
+    int bonus = 0;
+    switch (linesCount) {
+        case 1: bonus = 100; break;
+        case 2: bonus = 300; break;
+        case 3: bonus = 500; break;
+        default: bonus = 800; break;
+    }
+    score += bonus;
+    level = 1 + (score / 500);
+    dropSpeed = 500 - (level - 1) * 50;
+    if (dropSpeed < 100) dropSpeed = 100;
 }
 
 bool isGameOver() {
 // Chuc nang: Kiem tra ngay tai thoi diem khoi gach moi vua sinh ra o dinh (x = 5, y = 0),
 // neu goi canMove(0, 0) tra ve false (gach cu da chat day toi noc) thi bao thua cuoc.
 // Su dung de: Kiem tra sau moi lan goi spawnBlock() de quyet dinh dung vong lap game.
+    if (!canMove(0, 0)) return true;
     return false;
 }
 
