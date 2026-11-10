@@ -1,4 +1,4 @@
-# SS006 Tetris Project - Game Tetris Console (C++)
+# SS004 Tetris Project - Game Tetris Console (C++)
 
 Dự án trò chơi **Tetris** chạy trên giao diện Console Windows bằng ngôn ngữ C++, được xây dựng và nâng cấp dựa trên khung code mẫu của **Thầy Toàn** theo quy trình phát triển 4 giai đoạn (Pipeline).
 
