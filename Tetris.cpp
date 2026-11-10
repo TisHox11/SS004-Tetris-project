@@ -122,7 +122,7 @@ void pauseGame(){ // Tam dung tro choi khi nhan phim Pause
         if (c == 'p' || c == 'P') break;
     }
     gotoXY(uiX, 19);
-    cout << "
+    cout << "                                        ";
 }
 void showMenu(){ // Hien thi man hinh Menu bat dau game
     system("cls");
