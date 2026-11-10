@@ -66,15 +66,7 @@ void spawnBlock(); // Sinh khoi gach moi tai dinh man hinh
 bool canRotate(int newBlockIndex); // Kiem tra khoi gach co xoay sang trang thai moi duoc khong
 void rotateBlock(); // Thuc hien xoay khoi gach khi nhan phim
 void hardDrop(); // Ha khoi gach roi cham day ngay lap tuc
-void handleInput(bool &isRunning); // Xu ly toan bo su kien nhan phim tu nguoi choi
-void updateScoreAndLevel(int linesCount); // Cap nhat diem so, cap do va toc do roi
-bool isGameOver(); // Kiem tra dieu kien ket thuc game (thua cuoc)
-void drawUI(); // Ve giao dien diem so, khoi tiep theo ben canh bang
-void pauseGame(); // Tam dung tro choi khi nhan phim Pause
-void showMenu(); // Hien thi man hinh Menu bat dau game
-void showGameOver(); // Hien thi man hinh ket thuc va bao tong diem
-
-void handleInput(bool &isRunning) {
+void handleInput(bool &isRunning){ // Xu ly toan bo su kien nhan phim tu nguoi choi
     char c = getch();
     if ((c == 'a' || c == 'A') && canMove(-1, 0)) x--;
     else if ((c == 'd' || c == 'D') && canMove(1, 0)) x++;
@@ -84,8 +76,9 @@ void handleInput(bool &isRunning) {
     else if (c == 'p' || c == 'P') pauseGame();
     else if (c == 'q' || c == 'Q') isRunning = false;
 }
-
-void drawUI() {
+void updateScoreAndLevel(int linesCount); // Cap nhat diem so, cap do va toc do roi
+bool isGameOver(); // Kiem tra dieu kien ket thuc game (thua cuoc)
+void drawUI(){ // Ve giao dien diem so, khoi tiep theo ben canh bang
     int uiX = W + 4;
     gotoXY(uiX, 1);
     cout << "=== TETRIS GAME ===";
@@ -120,8 +113,7 @@ void drawUI() {
     gotoXY(uiX, 18);
     cout << "Q     : Thoat game";
 }
-
-void pauseGame() {
+void pauseGame(){ // Tam dung tro choi khi nhan phim Pause
     int uiX = W + 4;
     gotoXY(uiX, 19);
     cout << ">> DANG TAM DUNG (Nhan P de tiep tuc) <<";
@@ -130,10 +122,9 @@ void pauseGame() {
         if (c == 'p' || c == 'P') break;
     }
     gotoXY(uiX, 19);
-    cout << "                                        ";
+    cout << "
 }
-
-void showMenu() {
+void showMenu(){ // Hien thi man hinh Menu bat dau game
     system("cls");
     hideCursor();
     cout << "============================================" << endl;
@@ -152,8 +143,7 @@ void showMenu() {
     getch();
     system("cls");
 }
-
-void showGameOver() {
+void showGameOver(){ // Hien thi man hinh ket thuc va bao tong diem
     system("cls");
     cout << "============================================" << endl;
     cout << "        KET THUC TRO CHOI (GAME OVER)       " << endl;
