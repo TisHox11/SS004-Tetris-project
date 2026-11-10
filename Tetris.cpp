@@ -132,7 +132,7 @@ void initBoard(){
             else board[i][j] = ' ';
 }
 void draw(){
-    system("cls");
+    gotoXY(0, 0);
 
     for (int i = 0 ; i < H ; i++, cout<<endl)
         for (int j = 0 ; j < W ; j++) cout<<board[i][j];
@@ -157,17 +157,31 @@ void gotoXY(int posX, int posY) {
 // Chuc nang: Dua con tro van ban tren cua so Console den toa do cot posX, hang posY.
 // Su dung de: Ve de khung hinh moi len khung hinh cu ma khong can xoa trang man hinh,
 // giup game chay muot va khong bi chop nhay.
-}
+COORD coord;
+    coord.X = posX;
+    coord.Y = posY;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);}
 
 void hideCursor() {
 // Chuc nang: An dau nhay con tro soan thao tren man hinh Console.
 // Su dung de: Goi mot lan luc khoi tao game nham tang tinh tham my cho giao dien.
+    CONSOLE_CURSOR_INFO cursorInfo;
+    GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
+    cursorInfo.bVisible = FALSE;
+    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
 }
 
 void initGame() {
 // Chuc nang: Thiet lap lai toan bo thong so van dau (score = 0, level = 1, dropSpeed = 500),
 // dong thoi goi ham initBoard() va hideCursor() de chuan bi mat bang choi.
 // Su dung de: Goi truoc khi buoc vao vong lap chinh hoac khi bat dau van moi.
+    score = 0;
+    level = 1;
+    dropSpeed = 500;
+    nextB = rand() % 7;
+    hideCursor();
+    initBoard();
+    system("cls");
 }
 
 void spawnBlock() {
