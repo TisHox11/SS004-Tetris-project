@@ -76,27 +76,35 @@ void showGameOver(); // Hien thi man hinh ket thuc va bao tong diem
 int main()
 {
     srand(time(0));
-    x = 5; y = 0; b = rand()%7;
-    initBoard();
-    while (1){
+    showMenu();
+    initGame();
+    spawnBlock();
+
+    bool isRunning = true;
+    while (isRunning) {
         boardDelBlock();
-        if (kbhit()){
-            char c = getch();
-            if (c == 'a' && canMove(-1,0)) x--;
-            if (c == 'd' && canMove( 1,0)) x++;
-            if (c == 'x' && canMove( 0,1)) y++;
-            if (c == 'q') break;
+
+        if (kbhit()) {
+            handleInput(isRunning);
         }
-        if (canMove(0,1)) y++;
-        else{
+
+        if (canMove(0, 1)) {
+            y++;
+        } else {
             block2Board();
             removeLine();
-            x = 5; y = 0; b = rand()%7;
+            spawnBlock();
+            if (isGameOver()) {
+                showGameOver();
+                break;
+            }
         }
+
         block2Board();
         draw();
-        _sleep(500);
-    }
+        drawUI();
+        _sleep(dropSpeed);
+        }
     return 0;
 }
 
