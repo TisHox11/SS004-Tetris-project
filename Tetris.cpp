@@ -75,6 +75,8 @@ void showGameOver(); // Hien thi man hinh ket thuc va bao tong diem
 
 int main()
 {
+// Chuc nang: Khoi tao bo sinh so ngau nhien, hien thi menu, thiet lap van choi va
+// dieu phoi vong lap chinh cua game (xu ly phim, roi gach, kiem tra va cham, ve man hinh).
     srand(time(0));
     showMenu();
     initGame();
@@ -109,6 +111,8 @@ int main()
 }
 
 bool canMove(int dx, int dy){
+// Chuc nang: Kiem tra xem khi dich chuyen khoi gach hien tai theo do lech (dx, dy)
+// thi cac o gach co bi vuot ra khoi khung tuong hoac cham vao gach cu tren board hay khong.
     for (int i = 0; i < 4; i++ )
         for (int j = 0; j < 4; j++ )
             if (blocks[b][i][j] != ' ') {
@@ -122,6 +126,8 @@ bool canMove(int dx, int dy){
 void block2Board(){
 // Chuc nang: Sao chep cac ky tu khac khoang trang cua khoi gach hien tai (blocks[b])
 // vao mang hai chieu board tai toa do (x, y).
+// Su dung de: Co dinh cac khoi gach khi cham day hoac cap nhat vi tri moi cua khoi gach
+// truoc khi goi ham draw() de hien thi len man hinh.
     for (int i = 0; i < 4; i++ )
         for (int j = 0; j < 4; j++ )
             if (blocks[b][i][j] != ' ')
@@ -130,6 +136,8 @@ void block2Board(){
 void boardDelBlock(){
 // Chuc nang: Xoa hinh anh khoi gach hien tai tren mang board bang cach ghi de
 // ky tu khoang trang (' ') tai cac vi tri tuong ung voi blocks[b].
+// Su dung de: Goi o dau moi vong lap truoc khi xu ly di chuyen hoac xoay gach
+// nham tranh de lai vet cu va tranh tu va cham voi chinh no.
     for (int i = 0; i < 4; i++ )
         for (int j = 0; j < 4; j++ )
             if (blocks[b][i][j] != ' ')
@@ -151,6 +159,10 @@ void draw(){
         for (int j = 0 ; j < W ; j++) cout<<board[i][j];
 }
 void removeLine(){
+// Chuc nang: Quet tu day len dinh bang board de tim cac hang da duoc lap day gach,
+// xoa hang do bang cach don toan bo cac hang phia tren xuong, dem so hang xoa duoc
+// va goi updateScoreAndLevel() de tinh diem.
+// Su dung de: Goi ngay sau khi khoi gach da cham day va duoc ghi co dinh vao board.
     int i, j;
     int linesCount = 0;
     for (i = H - 2; i > 0; i--) {
