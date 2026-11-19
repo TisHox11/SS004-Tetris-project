@@ -156,6 +156,8 @@ void draw(){
 void removeLine(){
 // Chuc nang: Quet tu day len dinh bang board de tim cac hang da duoc lap day gach,
 // xoa hang do bang cach don toan bo cac hang phia tren xuong, dem so hang xoa duoc
+// va goi updateScoreAndLevel() de tinh diem.
+// Su dung de: Goi ngay sau khi khoi gach da cham day va duoc ghi co dinh vao board.
     int i, j;
     int linesCount = 0;
     for (i = H - 2; i > 0; i--) {
