@@ -122,6 +122,8 @@ bool canMove(int dx, int dy){
 void block2Board(){
 // Chuc nang: Sao chep cac ky tu khac khoang trang cua khoi gach hien tai (blocks[b])
 // vao mang hai chieu board tai toa do (x, y).
+// Su dung de: Co dinh khoi gach khi cham day hoac cap nhat vi tri moi cua khoi gach
+// truoc khi goi ham draw() de hien thi len man hinh.
     for (int i = 0; i < 4; i++ )
         for (int j = 0; j < 4; j++ )
             if (blocks[b][i][j] != ' ')
