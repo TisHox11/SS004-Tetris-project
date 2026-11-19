@@ -132,6 +132,8 @@ void boardDelBlock(){
                 board[y+i][x+j] = ' ';
 }
 void initBoard(){
+// Chuc nang: Khoi tao gia tri cho mang board, ve khung tuong bao quanh bang ky tu '#'
+// o cac bien ngoai va dien khoang trang (' ') cho khu vuc choi ben trong.
     for (int i = 0 ; i < H ; i++)
         for (int j = 0 ; j < W ; j++)
             if (i == 0 || i == H-1 || j ==0 || j == W-1) board[i][j] = '#';
@@ -171,7 +173,7 @@ void gotoXY(int posX, int posY) {
 // Chuc nang: Dua con tro van ban tren cua so Console den toa do cot posX, hang posY.
 // Su dung de: Ve de khung hinh moi len khung hinh cu ma khong can xoa trang man hinh,
 // giup game chay muot va khong bi chop nhay.
-COORD coord;
+    COORD coord;
     coord.X = posX;
     coord.Y = posY;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);}
