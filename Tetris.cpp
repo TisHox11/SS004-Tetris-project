@@ -75,6 +75,8 @@ void showGameOver(); // Hien thi man hinh ket thuc va bao tong diem
 
 int main()
 {
+// Chuc nang: Khoi tao bo sinh so ngau nhien, hien thi menu, thiet lap van choi va
+// dieu phoi vong lap chinh cua game (xu ly phim, roi gach, kiem tra va cham, ve man hinh).
     srand(time(0));
     showMenu();
     initGame();
@@ -134,6 +136,8 @@ void block2Board(){
 void boardDelBlock(){
 // Chuc nang: Xoa hinh anh khoi gach hien tai tren mang board bang cach ghi de
 // ky tu khoang trang (' ') tai cac vi tri tuong ung voi blocks[b].
+// Su dung de: Goi o dau moi vong lap truoc khi xu ly di chuyen hoac xoay gach
+// nham tranh de lai vet cu va tranh tu va cham voi chinh no.
     for (int i = 0; i < 4; i++ )
         for (int j = 0; j < 4; j++ )
             if (blocks[b][i][j] != ' ')
