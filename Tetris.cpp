@@ -109,6 +109,8 @@ int main()
 }
 
 bool canMove(int dx, int dy){
+// Chuc nang: Kiem tra xem khi dich chuyen khoi gach hien tai theo do lech (dx, dy)
+// thi cac o gach co bi vuot ra khoi khung tuong hoac cham vao gach cu tren board hay khong.
     for (int i = 0; i < 4; i++ )
         for (int j = 0; j < 4; j++ )
             if (blocks[b][i][j] != ' ') {
