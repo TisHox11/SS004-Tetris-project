@@ -75,6 +75,8 @@ void showGameOver(); // Hien thi man hinh ket thuc va bao tong diem
 
 int main()
 {
+// Chuc nang: Khoi tao bo sinh so ngau nhien, hien thi menu, thiet lap van choi va
+// dieu phoi vong lap chinh cua game (xu ly phim, roi gach, kiem tra va cham, ve man hinh).
     srand(time(0));
     showMenu();
     initGame();
