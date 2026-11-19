@@ -128,6 +128,8 @@ void block2Board(){
                 board[y+i][x+j] = blocks[b][i][j];
 }
 void boardDelBlock(){
+// Chuc nang: Xoa hinh anh khoi gach hien tai tren mang board bang cach ghi de
+// ky tu khoang trang (' ') tai cac vi tri tuong ung voi blocks[b].
     for (int i = 0; i < 4; i++ )
         for (int j = 0; j < 4; j++ )
             if (blocks[b][i][j] != ' ')
