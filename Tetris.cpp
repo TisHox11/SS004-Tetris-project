@@ -148,12 +148,15 @@ void boardDelBlock(){
 void initBoard(){
 // Chuc nang: Khoi tao gia tri cho mang board, ve khung tuong bao quanh bang ky tu '#'
 // o cac bien ngoai va dien khoang trang (' ') cho khu vuc choi ben trong.
+// Su dung de: Goi trong ham initGame() de tao mat bang sach se truoc khi bat dau van choi.
     for (int i = 0 ; i < H ; i++)
         for (int j = 0 ; j < W ; j++)
             if (i == 0 || i == H-1 || j ==0 || j == W-1) board[i][j] = '#';
             else board[i][j] = ' ';
 }
 void draw(){
+    // Chuc nang: Dua con tro man hinh ve goc tren cung ben trai (0, 0) bang gotoXY()
+    // va in toan bo mang board ra cua so Console.
     gotoXY(0, 0);
 
     for (int i = 0 ; i < H ; i++, cout<<endl)
