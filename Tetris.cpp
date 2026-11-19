@@ -153,6 +153,8 @@ void initBoard(){
             else board[i][j] = ' ';
 }
 void draw(){
+    // Chuc nang: Dua con tro man hinh ve goc tren cung ben trai (0, 0) bang gotoXY()
+    // va in toan bo mang board ra cua so Console.
     gotoXY(0, 0);
 
     for (int i = 0 ; i < H ; i++, cout<<endl)
