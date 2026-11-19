@@ -120,6 +120,8 @@ bool canMove(int dx, int dy){
     return true;
 }
 void block2Board(){
+// Chuc nang: Sao chep cac ky tu khac khoang trang cua khoi gach hien tai (blocks[b])
+// vao mang hai chieu board tai toa do (x, y).
     for (int i = 0; i < 4; i++ )
         for (int j = 0; j < 4; j++ )
             if (blocks[b][i][j] != ' ')
